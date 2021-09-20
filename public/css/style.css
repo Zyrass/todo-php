@@ -1,0 +1,93 @@
+/* VARIABLES */
+:root {
+  --primary: #ff7979;
+  --dark: #30336b;
+  --light: #f6e58d;
+  --white: #ffffff;
+}
+
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* BODY */
+body {
+  min-height: 100vh;
+  background-color: var(--primary);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr 50px;
+  grid-template-areas:
+    "header"
+    "todos"
+    "footer";
+}
+
+/* HEADER */
+header {
+  grid-area: header;
+  font-size: calc(16px + 1vmin);
+  text-transform: uppercase;
+}
+
+header,
+footer {
+  background-color: #30336b;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CONTENT */
+main {
+  grid-area: todos;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main .todos {
+  min-height: 30rem;
+  background-color: var(--light);
+  padding: 2.5rem;
+}
+
+main .todos form .new-todo {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+  grid-column-gap: 1rem;
+}
+
+main .todos form .new-todo input,
+main .todos form .new-todo button {
+  padding: 5px 10px;
+  outline: none;
+}
+
+main .todos form ul.list {
+  list-style-type: none;
+  padding: 25px 0;
+}
+
+main .todos form ul.list li {
+  background-color: var(--white);
+  margin: 5px 0;
+  padding: 10px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .todos form ul.list li input {
+  margin-right: 10px;
+}
+
+/* FOOTER */
+footer {
+  grid-area: footer;
+  font-size: calc(12px + 1vmin);
+}
