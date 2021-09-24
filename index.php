@@ -1,3 +1,27 @@
+<?php
+
+// Constantes d'erreurs
+const ERROR_REQUIRED = "Désolé, ce champ ne peut-être vide.";
+const ERROR_TOO_SHORT = "Désolé, vous avez saisie moins de 5 caractères.";
+$error = "";
+
+// Contrôle qu'on a bien une méthode POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+  // Désinfection de l'input
+  $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  $todo = $_POST['todo'];
+
+  // Contrôle de la TODO
+  if (!$todo) {
+    $error = ERROR_REQUIRED;
+  } elseif (mb_strlen($todo) < 5) {
+    $error = ERROR_TOO_SHORT;
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,18 +44,19 @@
   </header>
   <main>
     <div class="todos">
-      <form action="">
-        <div class="new-todo">
-          <input type="text" name="todo" id="todo" placeholder="Une chose à faire ?" />
-          <button type="submit">Ajouter</button>
-        </div>
-
-        <ul class="list">
-          <li>Apprendre PHP <input type="checkbox" name="task1" id="task1" /></li>
-          <li>Apprendre Symfony <input type="checkbox" name="task1" id="task1" /></li>
-          <li>Apprendre Le WEB <input type="checkbox" name="task1" id="task1" /></li>
-        </ul>
+      <form action="/" method="POST">
+        <input type="text" name="todo" id="todo" placeholder="Une chose à faire ?" />
+        <button type="submit">Ajouter</button>
       </form>
+      <?php if ($error) : ?>
+        <p><?= $error; ?></p>
+      <?php endif; ?>
+
+      <ul class="list">
+        <li>Apprendre PHP <input type="checkbox" name="task1" id="task1" /></li>
+        <li>Apprendre Symfony <input type="checkbox" name="task1" id="task1" /></li>
+        <li>Apprendre Le WEB <input type="checkbox" name="task1" id="task1" /></li>
+      </ul>
     </div>
   </main>
   <footer>

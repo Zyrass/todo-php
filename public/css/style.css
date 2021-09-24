@@ -51,27 +51,43 @@ main {
 }
 
 main .todos {
+  min-width: 800px;
   min-height: 30rem;
   background-color: var(--light);
   padding: 2.5rem;
 }
 
-main .todos form .new-todo {
-  margin: 2rem 0;
-  display: grid;
-  grid-template-columns: 10fr 1fr;
-  grid-column-gap: 1rem;
+main .todos form {
+  margin: 2rem 0 0.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 
-main .todos form .new-todo input,
-main .todos form .new-todo button {
-  padding: 5px 10px;
+main .todos form input,
+main .todos form button {
+  padding: 10px 15px;
   outline: none;
+  font-size: calc(10px + 1vmin);
+}
+
+main .todos form > input {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+main .todos form > button {
+  cursor: pointer;
+}
+
+main .todos p {
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 2rem;
 }
 
 main .todos form ul.list {
   list-style-type: none;
-  padding: 25px 0;
+  padding: 10px 0;
 }
 
 main .todos form ul.list li {
